@@ -7,5 +7,6 @@ exports.ShearStress = function ShearStress(knownVariables) {
 
   // Calculate tau
   let tau = (eta * delta_v) / delta_y;
-  return [tau, "unit"];
+
+  return { tau: [tau, "unit"] };
 };

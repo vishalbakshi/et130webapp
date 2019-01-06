@@ -22,4 +22,6 @@ html
       li=relevantFormulas
 
     h3 Answer
-    p=answer[0] + ' ' + answer[1]
+    ul
+      each val, index in answer
+        li=index + ' = ' + val[0] + ' ' + val[1]
