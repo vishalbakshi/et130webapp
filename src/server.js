@@ -2,6 +2,12 @@ const http = require("http");
 const fs = require("fs");
 const dotenv = require("dotenv");
 const express = require("express");
+const ShearStress = require("./ShearStress").ShearStress;
+let knownVariables = {
+  eta: ["1", "unit"],
+  delta_v: ["1", "unit"],
+  delta_y: ["1", "unit"]
+};
 
 dotenv.config();
 const app = express();
@@ -28,6 +34,7 @@ let practiceProblemsJson;
 readJson("./practiceProblems.json", function(data) {
   practiceProblemsJson = data;
 });
+
 // app methods
 app.set("view engine", "pug");
 
@@ -35,7 +42,6 @@ app.route("/").get(function(req, res) {
   // Create default problem
   let practiceProblem = defaultProblem;
   if (practiceProblemsJson) {
-    console.log(practiceProblemsJson.properties[0].topic);
     practiceProblem = {
       topic: practiceProblemsJson.properties[0].topic,
       problemStatement:
@@ -49,7 +55,9 @@ app.route("/").get(function(req, res) {
           .unknownVariable,
       relevantFormulas:
         practiceProblemsJson.properties[0].properties.relevantFormulas,
-      answer: practiceProblemsJson.properties[0].properties.problems[0].answer
+      answer: ShearStress(
+        practiceProblemsJson.properties[0].properties.problems[0].knownVariables
+      )
     };
   }
   res.render("index", practiceProblem);
