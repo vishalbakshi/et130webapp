@@ -9,12 +9,11 @@
           {
             "problemStatement": "What is the shear stress inside of a fluid with the following properties?",
             "knownVariables": {
-              "eta": ["1", "unit"],
-              "delta_v": ["1", "unit"],
-              "delta_y": ["1", "unit"]
+              "eta": ["2", "unit"],
+              "delta_v": ["0.5", "unit"],
+              "delta_y": ["10", "unit"]
             },
-            "unknownVariable": "tau",
-            "answer": ["1", "unit"]
+            "unknownVariable": "tau"
           }
         ]
       }
