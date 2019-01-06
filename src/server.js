@@ -1,10 +1,14 @@
-var http = require("http");
+const http = require("http");
+const dotenv = require("dotenv");
 const express = require("express");
 
+dotenv.config();
 const app = express();
 
+app.set("view engine", "pug");
+
 app.route("/").get(function(req, res) {
-  res.send("Hello!");
+  res.render("index");
 });
 
 app.listen(8080, function() {
