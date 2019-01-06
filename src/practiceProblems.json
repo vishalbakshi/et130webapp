@@ -3,6 +3,7 @@
   "properties": [
     {
       "topic": "ShearStress",
+      "relevantFormulas": "tau = eta * delta_v / delta_y",
       "problems": [
         {
           "problemStatement": "problem statement in json file",
