@@ -28,6 +28,7 @@ let practiceProblemsJson;
 readJson("./practiceProblems.json", function(data) {
   practiceProblemsJson = data;
 });
+
 // app methods
 app.set("view engine", "pug");
 
