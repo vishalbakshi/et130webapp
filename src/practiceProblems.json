@@ -3,19 +3,21 @@
   "properties": [
     {
       "topic": "ShearStress",
-      "relevantFormulas": "tau = eta * delta_v / delta_y",
-      "problems": [
-        {
-          "problemStatement": "problem statement in json file",
-          "knownVariables": {
-            "eta": ["1", "unit"],
-            "delta_v": ["1", "unit"],
-            "delta_y": ["1", "unit"]
-          },
-          "unknownVariable": "tau",
-          "answer": ["1", "unit"]
-        }
-      ]
+      "properties": {
+        "relevantFormulas": "tau = eta * delta_v / delta_y",
+        "problems": [
+          {
+            "problemStatement": "What is the shear stress inside of a fluid with the following properties?",
+            "knownVariables": {
+              "eta": ["1", "unit"],
+              "delta_v": ["1", "unit"],
+              "delta_y": ["1", "unit"]
+            },
+            "unknownVariable": "tau",
+            "answer": ["1", "unit"]
+          }
+        ]
+      }
     }
   ]
 }

@@ -9,13 +9,17 @@ html
     p=problemStatement
 
     h3 Known Variables
-    p=knownVariables
+    ul
+      each val, index in knownVariables
+        li=index + ' = ' + val[0] + ' ' + val[1]
 
     h3 Unknown Variable
-    p=unknownVariable
+    ul
+      li=unknownVariable
 
     h3 Relevant Formulas
-    p=relevantFormulas
+    ul  
+      li=relevantFormulas
 
     h3 Answer
-    p=answer
+    p=answer[0] + ' ' + answer[1]

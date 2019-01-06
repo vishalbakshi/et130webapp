@@ -24,17 +24,35 @@ let defaultProblem = {
   relevantFormulas: "y = x - 2",
   answer: "x = 4"
 };
-let practiceProblems;
+let practiceProblemsJson;
 readJson("./practiceProblems.json", function(data) {
-  practiceProblems = data;
+  practiceProblemsJson = data;
 });
 // app methods
 app.set("view engine", "pug");
 
 app.route("/").get(function(req, res) {
   // Create default problem
-
-  res.render("index", defaultProblem);
+  let practiceProblem = defaultProblem;
+  if (practiceProblemsJson) {
+    console.log(practiceProblemsJson.properties[0].topic);
+    practiceProblem = {
+      topic: practiceProblemsJson.properties[0].topic,
+      problemStatement:
+        practiceProblemsJson.properties[0].properties.problems[0]
+          .problemStatement,
+      knownVariables:
+        practiceProblemsJson.properties[0].properties.problems[0]
+          .knownVariables,
+      unknownVariable:
+        practiceProblemsJson.properties[0].properties.problems[0]
+          .unknownVariable,
+      relevantFormulas:
+        practiceProblemsJson.properties[0].properties.relevantFormulas,
+      answer: practiceProblemsJson.properties[0].properties.problems[0].answer
+    };
+  }
+  res.render("index", practiceProblem);
 });
 
 app.listen(8080, function() {
