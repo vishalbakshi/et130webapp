@@ -8,7 +8,13 @@ const app = express();
 app.set("view engine", "pug");
 
 app.route("/").get(function(req, res) {
-  res.render("index");
+  res.render("index", {
+    topic: "Shear Stress",
+    problemStatement: "Problem Statement text",
+    knownVariables: ["known variable 1", "known variable 2"],
+    unknownVariable: "unknown variable",
+    answer: [5.6, "lbs"]
+  });
 });
 
 app.listen(8080, function() {
