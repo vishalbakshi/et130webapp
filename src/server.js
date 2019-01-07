@@ -3,6 +3,7 @@ const fs = require("fs");
 const dotenv = require("dotenv");
 const express = require("express");
 const ShearStress = require("./ShearStress").ShearStress;
+const getProblem = require("./ShearStress").getProblem;
 
 // Setup the basic objects
 dotenv.config();
@@ -50,6 +51,7 @@ app.route("/").get(function(req, res) {
   let practiceProblem = defaultProblem;
 
   // If JSON data has been got, set problem object to its data
+  /*
   if (practiceProblemsJson) {
     practiceProblem = {
       topic: practiceProblemsJson.properties[0].topic,
@@ -69,15 +71,21 @@ app.route("/").get(function(req, res) {
       )
     };
   }
+  */
+  if (getProblem("metric")) {
+    practiceProblem = getProblem("metric");
+    practiceProblem.answer = ShearStress(practiceProblem.knownVariables);
+  }
 
   // Send the problem object to index.pug
   res.render("index", practiceProblem);
 });
-/*
+
 app.listen(8080, function() {
   console.log("express listening on 8080");
 });
 
+/*
 //create a server object:
 http
   .createServer(function(req, res) {
