@@ -72,8 +72,12 @@ app.route("/").get(function(req, res) {
     };
   }
   */
-  if (getProblem("metric")) {
-    practiceProblem = getProblem("metric");
+  let unitSystems = ["metric", "imperial"];
+  let unitSystemsIndex = Math.floor(Math.random() * 2);
+  let unitSystem = unitSystems[unitSystemsIndex];
+
+  if (getProblem(unitSystems[unitSystemsIndex])) {
+    practiceProblem = getProblem(unitSystem);
     practiceProblem.answer = ShearStress(practiceProblem.knownVariables);
   }
 
