@@ -6,7 +6,7 @@ var mocha = new Mocha({ ui: "tdd" });
 
 chai.use(chaiHttp);
 
-test("test what response is", function(done) {
+test("GET response contains correct page headers", function(done) {
   chai
     .request("http://localhost:8080")
     .get("/")
