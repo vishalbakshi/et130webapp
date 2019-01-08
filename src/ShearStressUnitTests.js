@@ -183,8 +183,6 @@ test("getProblem('metric') return object values are as expected", function(t) {
   t.end();
 });
 
-///
-
 test("getProblem('imperial') returns an object", function(t) {
   t.equal(typeof getProblem("imperial"), "object");
   t.end();

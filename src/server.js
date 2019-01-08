@@ -85,7 +85,7 @@ app.route("/").get(function(req, res) {
   res.render("index", practiceProblem);
 });
 
-app.listen(8080, function() {
+const server = app.listen(8080, function() {
   console.log("express listening on 8080");
 });
 
@@ -98,3 +98,5 @@ http
   })
   .listen(8080); //the server object listens on port 8080
 */
+
+module.exports = { app: app, server: server };
