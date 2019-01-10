@@ -2,8 +2,10 @@ const http = require("http");
 const fs = require("fs");
 const dotenv = require("dotenv");
 const express = require("express");
-const ShearStress = require("./ShearStress").ShearStress;
-const getProblem = require("./ShearStress").getProblem;
+//const ShearStress = require("./ShearStress").ShearStress;
+//const getProblem = require("./ShearStress").getProblem;
+const PressureHeight = require("./PressureHeight").PressureHeight;
+const getProblem = require("./PressureHeight").getProblem;
 
 // Setup the basic objects
 dotenv.config();
@@ -81,7 +83,8 @@ app.route("/").get(function(req, res) {
 
   if (getProblem(unitSystems[unitSystemsIndex])) {
     practiceProblem = getProblem(unitSystem);
-    practiceProblem.answer = ShearStress(practiceProblem.knownVariables);
+    //practiceProblem.answer = ShearStress(practiceProblem.knownVariables);
+    practiceProblem.answer = PressureHeight(practiceProblem.knownVariables);
   }
 
   // Send the problem object to index.pug

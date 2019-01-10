@@ -136,8 +136,8 @@ test("getProblem('metric') return object keys hold values of the correct type", 
 test("getProblem('metric') return object values are as expected", function(t) {
   t.looseEqual(
     getProblem("metric").topic,
-    "Shear Stress",
-    "`topic` is `Shear Stress"
+    "ShearStress",
+    "`topic` is `ShearStress`"
   );
   t.looseEqual(
     getProblem("metric").problemStatement,
@@ -231,8 +231,8 @@ test("getProblem('imperial') return object keys hold values of the correct type"
 test("getProblem('imperial') return object values are as expected", function(t) {
   t.looseEqual(
     getProblem("imperial").topic,
-    "Shear Stress",
-    "`topic` is `Shear Stress"
+    "ShearStress",
+    "`topic` is `ShearStress`"
   );
   t.looseEqual(
     getProblem("imperial").problemStatement,

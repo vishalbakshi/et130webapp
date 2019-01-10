@@ -14,7 +14,7 @@ exports.getProblem = function getProblem(unitSystem) {
     topic: "", // topic name goes here as String
     problemStatement: "", // generalize problemStatement for all problems
     knownVariables: {
-      // pull from variable definitions above
+      // reference variable definitions above
     },
     unknownVariable: "", // String name of unknownVariable student will solve for
     relevantFormulas: "" // String of relevant formulas (right now just one)

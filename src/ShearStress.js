@@ -13,7 +13,7 @@ exports.getProblem = function getProblem(unitSystem) {
   }
 
   let practiceProblem = {
-    topic: "Shear Stress",
+    topic: "ShearStress",
     problemStatement:
       "What is the shear stress inside of a fluid with the following properties?",
     knownVariables: {
@@ -35,11 +35,11 @@ exports.ShearStress = function ShearStress(knownVariables) {
   let delta_y = Number(knownVariables.delta_y[0]);
 
   // Calculate tau
-  let tau = (eta * delta_v) / delta_y;
+  let tau = [(eta * delta_v) / delta_y, "unit"];
 
   // get correct units of tau
-  if (knownVariables.delta_y[1] == "m") tauUnit = "Pa";
-  if (knownVariables.delta_y[1] == "ft") tauUnit = "lb/ft^2";
+  if (knownVariables.delta_y[1] == "m") tau[1] = "Pa";
+  if (knownVariables.delta_y[1] == "ft") tau[1] = "lb/ft^2";
 
-  return { tau: [tau, tauUnit] };
+  return { tau: tau };
 };
