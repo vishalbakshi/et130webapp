@@ -14,6 +14,7 @@ const app = express();
  * @param    callback    Function
  * return    callback    Function
  * */
+/*
 const readJson = function(path, callback) {
   fs.readFile(require.resolve(path), function(err, data) {
     if (err) {
@@ -22,6 +23,7 @@ const readJson = function(path, callback) {
     return callback(JSON.parse(data));
   });
 };
+*/
 
 // Create a defaultProblem that displays on index.pug
 let defaultProblem = {
@@ -37,10 +39,11 @@ let defaultProblem = {
 let practiceProblemsJson;
 
 // Get JSON data and assign to practiceProblemsJson
+/*
 readJson("./practiceProblems.json", function(data) {
   practiceProblemsJson = data;
 });
-
+*/
 // app methods
 // use pug as view engine
 app.set("view engine", "pug");

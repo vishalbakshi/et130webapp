@@ -1,12 +1,12 @@
 exports.getProblem = function getProblem(unitSystem) {
   let eta, delta_v, delta_y;
-  if (unitSystem == "metric") {
+  if (unitSystem === "metric") {
     eta = [0.001 + Math.random(), "Pa*s"];
     delta_v = [Math.floor(Math.random() * 5 + 1), "m/s"];
     delta_y = [Math.floor(Math.random() * 5 + 1), "m"];
   }
 
-  if (unitSystem == "imperial") {
+  if (unitSystem === "imperial") {
     eta = [0.00003 + Math.random(), "lb*s/ft^2"];
     delta_v = [Math.floor(Math.random() * 15 + 1), "ft/s"];
     delta_y = [Math.floor(Math.random() * 15 + 1), "ft"];
