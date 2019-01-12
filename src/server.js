@@ -4,8 +4,10 @@ const dotenv = require("dotenv");
 const express = require("express");
 //const ShearStress = require("./ShearStress").ShearStress;
 //const getProblem = require("./ShearStress").getProblem;
-const PressureHeight = require("./PressureHeight").PressureHeight;
-const getProblem = require("./PressureHeight").getProblem;
+//const PressureHeight = require("./PressureHeight").PressureHeight;
+//const getProblem = require("./PressureHeight").getProblem;
+const VerticalWallForce = require("./VerticalWallForce").VerticalWallForce;
+const getProblem = require("./VerticalWallForce").getProblem;
 
 // Setup the basic objects
 dotenv.config();
@@ -84,7 +86,8 @@ app.route("/").get(function(req, res) {
   if (getProblem(unitSystems[unitSystemsIndex])) {
     practiceProblem = getProblem(unitSystem);
     //practiceProblem.answer = ShearStress(practiceProblem.knownVariables);
-    practiceProblem.answer = PressureHeight(practiceProblem.knownVariables);
+    //practiceProblem.answer = PressureHeight(practiceProblem.knownVariables);
+    practiceProblem.answer = VerticalWallForce(practiceProblem.knownVariables);
   }
 
   // Send the problem object to index.pug
