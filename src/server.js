@@ -12,8 +12,10 @@ const express = require("express");
 //const getProblem = require("./ReynoldsNumber1").getProblem;
 //const ReynoldsNumber2 = require("./ReynoldsNumber2").ReynoldsNumber2;
 //const getProblem = require("./ReynoldsNumber2").getProblem;
-const HeadLoss = require("./HeadLoss").HeadLoss;
-const getProblem = require("./HeadLoss").getProblem;
+//const HeadLoss = require("./HeadLoss").HeadLoss;
+//const getProblem = require("./HeadLoss").getProblem;
+const RelativeRoughness = require("./RelativeRoughness").RelativeRoughness;
+const getProblem = require("./RelativeRoughness").getProblem;
 
 // Setup the basic objects
 dotenv.config();
@@ -96,7 +98,8 @@ app.route("/").get(function(req, res) {
     //practiceProblem.answer = VerticalWallForce(practiceProblem.knownVariables);
     //practiceProblem.answer = ReynoldsNumber1(practiceProblem.knownVariables);
     //practiceProblem.answer = ReynoldsNumber2(practiceProblem.knownVariables);
-    practiceProblem.answer = HeadLoss(practiceProblem.knownVariables);
+    //practiceProblem.answer = HeadLoss(practiceProblem.knownVariables);
+    practiceProblem.answer = RelativeRoughness(practiceProblem.knownVariables);
   }
 
   // Send the problem object to index.pug
