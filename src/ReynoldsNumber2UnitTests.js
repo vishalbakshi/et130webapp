@@ -2,8 +2,8 @@ const test = require("tape");
 const ReynoldsNumber2 = require("./ReynoldsNumber2").ReynoldsNumber2;
 const getProblem = require("./ReynoldsNumber2").getProblem;
 
-// ===== UNIT TESTS:  ReynoldsNumber1() ===== //
-// input argument for ReynoldsNumber1 function
+// ===== UNIT TESTS:  ReynoldsNumber2() ===== //
+// input argument for ReynoldsNumber2 function
 let knownVariables = {
   velocity: [1, "m/s"],
   diameter: [1, "m"],
@@ -84,7 +84,7 @@ test("`ReynoldsNumber2` returns correct value of imperial `reynoldsNumber`", fun
   t.end();
 });
 
-test("`ReynoldsNumber2` returns correct unit of imperial `tau`", function(t) {
+test("`ReynoldsNumber2` returns correct unit of imperial `reynoldsNumber`", function(t) {
   let knownVariables = {
     velocity: [Math.floor(Math.random() * 15 + 1), "ft/s"],
     diameter: [Math.random() * 3, "ft"],
