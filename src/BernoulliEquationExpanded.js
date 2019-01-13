@@ -83,12 +83,14 @@ exports.BernoulliEquationExpanded = function BernoulliEquationExpanded(
         (2 * gravitationalConstant[0]) +
       elevation2[0] -
       elevation1[0] +
-      headLoss,
+      headLoss[0],
     "units"
   ];
 
   // get correct units of uknown variable based on input unit system
-  headAdded[1] = headLoss[1];
+  if (headLoss[1] === "ft") headAdded[1] = "ft";
+  if (headLoss[1] === "m") headAdded[1] = "m";
+  console.log(headAdded);
 
   return { headAdded: headAdded }; // {unknownVariable: [Number value, String unit] }
 };

@@ -41,7 +41,82 @@ test("`BernoulliEquationExpanded` return object[`headAdded`] is an array", funct
   );
   t.end();
 });
+test("`BernoulliEquationExpanded` returns correct typeof metric `headAdded` value", function(t) {
+  let knownVariables = {
+    pressure1: [Math.floor(Math.random() * 500 + 1), "kPa"],
+    velocity1: [Math.floor(Math.random() * 5 + 1), "m/s"],
+    elevation1: [Math.floor(Math.random() * 5 + 1), "m"],
+    pressure2: [Math.floor(Math.random() * 500 + 1), "kPa"],
+    velocity2: [Math.floor(Math.random() * 5 + 1), "m/s"],
+    elevation2: [Math.floor(Math.random() * 5 + 1), "m"],
+    headLoss: [Math.floor(Math.random() * 10 + 1), "m"],
+    gamma: [Math.floor(Math.random() * 9810), "N/m^3"],
+    gravitationalConstant: [9.81, "m/s^2"]
+  };
 
+  t.equal(
+    typeof BernoulliEquationExpanded(knownVariables)["headAdded"][0],
+    "number"
+  );
+  t.end();
+});
+test("`BernoulliEquationExpanded` returns correct typeof metric `headAdded` unit", function(t) {
+  let knownVariables = {
+    pressure1: [Math.floor(Math.random() * 500 + 1), "kPa"],
+    velocity1: [Math.floor(Math.random() * 5 + 1), "m/s"],
+    elevation1: [Math.floor(Math.random() * 5 + 1), "m"],
+    pressure2: [Math.floor(Math.random() * 500 + 1), "kPa"],
+    velocity2: [Math.floor(Math.random() * 5 + 1), "m/s"],
+    elevation2: [Math.floor(Math.random() * 5 + 1), "m"],
+    headLoss: [Math.floor(Math.random() * 10 + 1), "m"],
+    gamma: [Math.floor(Math.random() * 9810), "N/m^3"],
+    gravitationalConstant: [9.81, "m/s^2"]
+  };
+
+  t.equal(
+    typeof BernoulliEquationExpanded(knownVariables)["headAdded"][1],
+    "string"
+  );
+  t.end();
+});
+test("`BernoulliEquationExpanded` returns correct typeof imperial `headAdded` value", function(t) {
+  let knownVariables = {
+    pressure1: [Math.floor(Math.random() * 10000 + 1), "psf"],
+    velocity1: [Math.floor(Math.random() * 15 + 1), "ft/s"],
+    elevation1: [Math.floor(Math.random() * 15 + 1), "ft"],
+    pressure2: [Math.floor(Math.random() * 10000 + 1), "psf"],
+    velocity2: [Math.floor(Math.random() * 15 + 1), "ft/s"],
+    elevation2: [Math.floor(Math.random() * 15 + 1), "ft"],
+    headLoss: [Math.floor(Math.random() * 20 + 1), "ft"],
+    gamma: [Math.floor(Math.random() * 62.4), "lb/ft^3"],
+    gravitationalConstant: [32.2, "ft/s^2"]
+  };
+
+  t.equal(
+    typeof BernoulliEquationExpanded(knownVariables)["headAdded"][0],
+    "number"
+  );
+  t.end();
+});
+test("`BernoulliEquationExpanded` returns correct typeof imperial `headAdded` unit", function(t) {
+  let knownVariables = {
+    pressure1: [Math.floor(Math.random() * 10000 + 1), "psf"],
+    velocity1: [Math.floor(Math.random() * 15 + 1), "ft/s"],
+    elevation1: [Math.floor(Math.random() * 15 + 1), "ft"],
+    pressure2: [Math.floor(Math.random() * 10000 + 1), "psf"],
+    velocity2: [Math.floor(Math.random() * 15 + 1), "ft/s"],
+    elevation2: [Math.floor(Math.random() * 15 + 1), "ft"],
+    headLoss: [Math.floor(Math.random() * 20 + 1), "ft"],
+    gamma: [Math.floor(Math.random() * 62.4), "lb/ft^3"],
+    gravitationalConstant: [32.2, "ft/s^2"]
+  };
+
+  t.equal(
+    typeof BernoulliEquationExpanded(knownVariables)["headAdded"][1],
+    "string"
+  );
+  t.end();
+});
 test("`BernoulliEquationExpanded` returns correct value of metric `headAdded`", function(t) {
   let knownVariables = {
     pressure1: [Math.floor(Math.random() * 500 + 1), "kPa"],
@@ -63,7 +138,7 @@ test("`BernoulliEquationExpanded` returns correct value of metric `headAdded`", 
         (2 * knownVariables.gravitationalConstant[0]) +
       knownVariables.elevation2[0] -
       knownVariables.elevation1[0] +
-      knownVariables.headLoss,
+      knownVariables.headLoss[0],
     "units"
   ];
 
@@ -112,7 +187,7 @@ test("`BernoulliEquationExpanded` returns correct value of imperial `headAdded`"
         (2 * knownVariables.gravitationalConstant[0]) +
       knownVariables.elevation2[0] -
       knownVariables.elevation1[0] +
-      knownVariables.headLoss,
+      knownVariables.headLoss[0],
     "units"
   ];
 
