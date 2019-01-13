@@ -8,6 +8,7 @@ exports.getProblem = function getProblem(unitSystem) {
     elevation2,
     gamma,
     gravitationalConstant;
+
   if (unitSystem === "metric") {
     // assign metric values and units
     // variable = [Number value, String unit];
@@ -28,6 +29,7 @@ exports.getProblem = function getProblem(unitSystem) {
     velocity2 = [Math.floor(Math.random() * 15 + 1), "ft/s"];
     elevation1 = [Math.floor(Math.random() * 15 + 1), "ft"];
     elevation2 = [Math.floor(Math.random() * 15 + 1), "ft"];
+    gamma = [Math.floor(Math.random() * 62.4), "lb/ft^3"];
     gravitationalConstant = [32.2, "ft/s^2"];
   }
 
