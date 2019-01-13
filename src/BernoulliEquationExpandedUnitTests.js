@@ -1,132 +1,142 @@
 const test = require("tape");
-const BernoulliEquationSimplified = require("./BernoulliEquationSimplified")
-  .BernoulliEquationSimplified;
-const getProblem = require("./BernoulliEquationSimplified").getProblem;
+const BernoulliEquationExpanded = require("./BernoulliEquationExpanded")
+  .BernoulliEquationExpanded;
+const getProblem = require("./BernoulliEquationExpanded").getProblem;
 
-// ===== UNIT TESTS:  BernoulliEquationSimplified() ===== //
-// input argument for BernoulliEquationSimplified function
+// ===== UNIT TESTS:  BernoulliEquationExpanded() ===== //
+// input argument for BernoulliEquationExpanded function
 let knownVariables = {
   pressure1: [1, "kPa"],
   velocity1: [1, "m/s"],
   elevation1: [1, "m"],
+  headLoss: [1, "m"],
+  pressure2: [1, "kPa"],
   velocity2: [1, "m/s"],
   elevation2: [1, "m"],
   gamma: [1, "N/m^3"],
   gravitationalConstant: [1, "m/s^2"]
 };
 
-test("`BernoulliEquationSimplified` is a function", function(t) {
-  t.equal(typeof BernoulliEquationSimplified, "function");
+test("`BernoulliEquationExpanded` is a function", function(t) {
+  t.equal(typeof BernoulliEquationExpanded, "function");
   t.end();
 });
 
-test("`BernoulliEquationSimplified` returns an object", function(t) {
-  t.equal(typeof BernoulliEquationSimplified(knownVariables), "object");
+test("`BernoulliEquationExpanded` returns an object", function(t) {
+  t.equal(typeof BernoulliEquationExpanded(knownVariables), "object");
   t.end();
 });
 
-test("`BernoulliEquationSimplified` return object has `pressure2` key", function(t) {
-  t.looseEqual(Object.keys(BernoulliEquationSimplified(knownVariables)), [
-    "pressure2"
+test("`BernoulliEquationExpanded` return object has `headAdded` key", function(t) {
+  t.looseEqual(Object.keys(BernoulliEquationExpanded(knownVariables)), [
+    "headAdded"
   ]);
   t.end();
 });
 
-test("`BernoulliEquationSimplified` return object[`pressure2`] is an array", function(t) {
+test("`BernoulliEquationExpanded` return object[`headAdded`] is an array", function(t) {
   t.looseEqual(
-    Array.isArray(BernoulliEquationSimplified(knownVariables)["pressure2"]),
+    Array.isArray(BernoulliEquationExpanded(knownVariables)["headAdded"]),
     true
   );
   t.end();
 });
 
-test("`BernoulliEquationSimplified` returns correct value of metric `pressure2`", function(t) {
+test("`BernoulliEquationExpanded` returns correct value of metric `headAdded`", function(t) {
   let knownVariables = {
     pressure1: [Math.floor(Math.random() * 500 + 1), "kPa"],
     velocity1: [Math.floor(Math.random() * 5 + 1), "m/s"],
-    velocity2: [Math.floor(Math.random() * 5 + 1), "m/s"],
     elevation1: [Math.floor(Math.random() * 5 + 1), "m"],
+    pressure2: [Math.floor(Math.random() * 500 + 1), "kPa"],
+    velocity2: [Math.floor(Math.random() * 5 + 1), "m/s"],
     elevation2: [Math.floor(Math.random() * 5 + 1), "m"],
+    headLoss: [Math.floor(Math.random() * 10 + 1), "m"],
     gamma: [Math.floor(Math.random() * 9810), "N/m^3"],
     gravitationalConstant: [9.81, "m/s^2"]
   };
 
-  let pressure2 = [
-    knownVariables.gamma[0] *
-      (knownVariables.pressure1[0] / knownVariables.gamma[0] +
-        Math.pow(knownVariables.velocity1[0], 2) /
-          (2 * knownVariables.gravitationalConstant[0]) +
-        knownVariables.elevation1[0] -
-        Math.pow(knownVariables.velocity2[0], 2) /
-          (2 * knownVariables.gravitationalConstant[0]) -
-        knownVariables.elevation2[0]),
+  let headAdded = [
+    (knownVariables.pressure2[0] - knownVariables.pressure1[0]) /
+      knownVariables.gamma[0] +
+      (Math.pow(knownVariables.velocity2[0], 2) -
+        Math.pow(knownVariables.velocity1[0], 2)) /
+        (2 * knownVariables.gravitationalConstant[0]) +
+      knownVariables.elevation2[0] -
+      knownVariables.elevation1[0] +
+      knownVariables.headLoss,
     "units"
   ];
 
   t.equal(
-    BernoulliEquationSimplified(knownVariables)["pressure2"][0],
-    pressure2[0]
+    BernoulliEquationExpanded(knownVariables)["headAdded"][0],
+    headAdded[0]
   );
   t.end();
 });
 
-test("`BernoulliEquationSimplified` returns correct unit of metric `pressure2`", function(t) {
+test("`BernoulliEquationExpanded` returns correct unit of metric `headAdded`", function(t) {
   let knownVariables = {
     pressure1: [Math.floor(Math.random() * 500 + 1), "kPa"],
     velocity1: [Math.floor(Math.random() * 5 + 1), "m/s"],
-    velocity2: [Math.floor(Math.random() * 5 + 1), "m/s"],
     elevation1: [Math.floor(Math.random() * 5 + 1), "m"],
+    pressure2: [Math.floor(Math.random() * 500 + 1), "kPa"],
+    velocity2: [Math.floor(Math.random() * 5 + 1), "m/s"],
     elevation2: [Math.floor(Math.random() * 5 + 1), "m"],
+    headLoss: [Math.floor(Math.random() * 10 + 1), "m"],
     gamma: [Math.floor(Math.random() * 9810), "N/m^3"],
     gravitationalConstant: [9.81, "m/s^2"]
   };
 
-  t.equal(BernoulliEquationSimplified(knownVariables)["pressure2"][1], "kPa");
+  t.equal(BernoulliEquationExpanded(knownVariables)["headAdded"][1], "m");
   t.end();
 });
 
-test("`BernoulliEquationSimplified` returns correct value of imperial `pressure2`", function(t) {
+test("`BernoulliEquationExpanded` returns correct value of imperial `headAdded`", function(t) {
   let knownVariables = {
     pressure1: [Math.floor(Math.random() * 10000 + 1), "psf"],
     velocity1: [Math.floor(Math.random() * 15 + 1), "ft/s"],
-    velocity2: [Math.floor(Math.random() * 15 + 1), "ft/s"],
     elevation1: [Math.floor(Math.random() * 15 + 1), "ft"],
+    pressure2: [Math.floor(Math.random() * 10000 + 1), "psf"],
+    velocity2: [Math.floor(Math.random() * 15 + 1), "ft/s"],
     elevation2: [Math.floor(Math.random() * 15 + 1), "ft"],
+    headLoss: [Math.floor(Math.random() * 20 + 1), "ft"],
     gamma: [Math.floor(Math.random() * 62.4), "lb/ft^3"],
     gravitationalConstant: [32.2, "ft/s^2"]
   };
 
-  let pressure2 = [
-    knownVariables.gamma[0] *
-      (knownVariables.pressure1[0] / knownVariables.gamma[0] +
-        Math.pow(knownVariables.velocity1[0], 2) /
-          (2 * knownVariables.gravitationalConstant[0]) +
-        knownVariables.elevation1[0] -
-        Math.pow(knownVariables.velocity2[0], 2) /
-          (2 * knownVariables.gravitationalConstant[0]) -
-        knownVariables.elevation2[0]),
+  let headAdded = [
+    (knownVariables.pressure2[0] - knownVariables.pressure1[0]) /
+      knownVariables.gamma[0] +
+      (Math.pow(knownVariables.velocity2[0], 2) -
+        Math.pow(knownVariables.velocity1[0], 2)) /
+        (2 * knownVariables.gravitationalConstant[0]) +
+      knownVariables.elevation2[0] -
+      knownVariables.elevation1[0] +
+      knownVariables.headLoss,
     "units"
   ];
 
   t.equal(
-    BernoulliEquationSimplified(knownVariables)["pressure2"][0],
-    pressure2[0]
+    BernoulliEquationExpanded(knownVariables)["headAdded"][0],
+    headAdded[0]
   );
   t.end();
 });
 
-test("`BernoulliEquationSimplified` returns correct unit of imperial `pressure2`", function(t) {
+test("`BernoulliEquationExpanded` returns correct unit of imperial `headAdded`", function(t) {
   let knownVariables = {
     pressure1: [Math.floor(Math.random() * 10000 + 1), "psf"],
     velocity1: [Math.floor(Math.random() * 15 + 1), "ft/s"],
-    velocity2: [Math.floor(Math.random() * 15 + 1), "ft/s"],
     elevation1: [Math.floor(Math.random() * 15 + 1), "ft"],
+    pressure2: [Math.floor(Math.random() * 10000 + 1), "psf"],
+    velocity2: [Math.floor(Math.random() * 15 + 1), "ft/s"],
     elevation2: [Math.floor(Math.random() * 15 + 1), "ft"],
+    headLoss: [Math.floor(Math.random() * 20 + 1), "ft"],
     gamma: [Math.floor(Math.random() * 62.4), "lb/ft^3"],
     gravitationalConstant: [32.2, "ft/s^2"]
   };
 
-  t.equal(BernoulliEquationSimplified(knownVariables)["pressure2"][1], "psf");
+  t.equal(BernoulliEquationExpanded(knownVariables)["headAdded"][1], "ft");
   t.end();
 });
 
@@ -184,13 +194,13 @@ test("getProblem('metric') return object keys hold values of the correct type", 
 test("getProblem('metric') return object values are as expected", function(t) {
   t.looseEqual(
     getProblem("metric").topic,
-    "BernoulliEquationSimplified",
-    "`topic` is `BernoulliEquationSimplified`"
+    "BernoulliEquationExpanded",
+    "`topic` is `BernoulliEquationExpanded`"
   );
   t.looseEqual(
     getProblem("metric").problemStatement,
-    "What is the pressure in the pipe at point 2 given the following properties?",
-    "`problemStatement` is `What is the pressure in the pipe at point 2 given the following properties?`"
+    "How much head must a pump add to a system with the following properties?",
+    "`problemStatement` is `How much head must a pump add to a system with the following properties?`"
   );
   t.looseEqual(
     Object.keys(getProblem("metric").knownVariables),
@@ -198,12 +208,14 @@ test("getProblem('metric') return object values are as expected", function(t) {
       "pressure1",
       "velocity1",
       "elevation1",
+      "headLoss",
+      "pressure2",
       "velocity2",
       "elevation2",
       "gamma",
       "gravitationalConstant"
     ],
-    "`knownVariables` keys are `pressure1`, `velocity1`, `velocity2`, `elevation1`, `elevation2`, `gamma`. and `gravitationalConstant`"
+    "`knownVariables` keys are `pressure1`, `velocity1`, 'elevation1', `headLoss`, `pressure2`, `velocity2`, `elevation2`, `gamma`. and `gravitationalConstant`"
   );
   t.looseEqual(
     typeof getProblem("metric").knownVariables.pressure1[0],
@@ -219,6 +231,16 @@ test("getProblem('metric') return object values are as expected", function(t) {
     typeof getProblem("metric").knownVariables.elevation1[0],
     "number",
     "`elevation1[0]` is a number"
+  );
+  t.looseEqual(
+    typeof getProblem("metric").knownVariables.headLoss[0],
+    "number",
+    "`headLoss[0]` is a number"
+  );
+  t.looseEqual(
+    typeof getProblem("metric").knownVariables.pressure2[0],
+    "number",
+    "`pressure2[0]` is a number"
   );
   t.looseEqual(
     typeof getProblem("metric").knownVariables.velocity2[0],
@@ -254,6 +276,16 @@ test("getProblem('metric') return object values are as expected", function(t) {
     getProblem("metric").knownVariables.elevation1[1],
     "m",
     "`elevation1[1]` is a `m`"
+  );
+  t.looseEqual(
+    getProblem("metric").knownVariables.headLoss[1],
+    "m",
+    "`headLoss[1]` is a `m`"
+  );
+  t.looseEqual(
+    getProblem("metric").knownVariables.pressure2[1],
+    "kPa",
+    "`pressure2[1]` is a `kPa`"
   );
   t.looseEqual(
     getProblem("metric").knownVariables.velocity2[1],
@@ -327,13 +359,13 @@ test("getProblem('imperial') return object keys hold values of the correct type"
 test("getProblem('imperial') return object values are as expected", function(t) {
   t.looseEqual(
     getProblem("imperial").topic,
-    "BernoulliEquationSimplified",
-    "`topic` is `BernoulliEquationSimplified`"
+    "BernoulliEquationExpanded",
+    "`topic` is `BernoulliEquationExpanded`"
   );
   t.looseEqual(
     getProblem("imperial").problemStatement,
-    "What is the pressure in the pipe at point 2 given the following properties?",
-    "`problemStatement` is `What is the pressure in the pipe at point 2 given the following properties?`"
+    "How much head must a pump add to a system with the following properties?",
+    "`problemStatement` is `How much head must a pump add to a system with the following properties?`"
   );
   t.looseEqual(
     Object.keys(getProblem("imperial").knownVariables),
@@ -341,12 +373,14 @@ test("getProblem('imperial') return object values are as expected", function(t) 
       "pressure1",
       "velocity1",
       "elevation1",
+      "headLoss",
+      "pressure2",
       "velocity2",
       "elevation2",
       "gamma",
       "gravitationalConstant"
     ],
-    "`knownVariables` keys are `pressure1`, `velocity1`, `velocity2`, `elevation1`, `elevation2`, `gamma`. and `gravitationalConstant`"
+    "`knownVariables` keys are `pressure1`, `velocity1`, 'elevation1', `headLoss`, `pressure2`, `velocity2`, `elevation2`, `gamma`. and `gravitationalConstant`"
   );
   t.looseEqual(
     typeof getProblem("imperial").knownVariables.pressure1[0],
@@ -362,6 +396,16 @@ test("getProblem('imperial') return object values are as expected", function(t) 
     typeof getProblem("imperial").knownVariables.elevation1[0],
     "number",
     "`elevation1[0]` is a number"
+  );
+  t.looseEqual(
+    typeof getProblem("imperial").knownVariables.headLoss[0],
+    "number",
+    "`headLoss[0]` is a number"
+  );
+  t.looseEqual(
+    typeof getProblem("imperial").knownVariables.pressure2[0],
+    "number",
+    "`pressure2[0]` is a number"
   );
   t.looseEqual(
     typeof getProblem("imperial").knownVariables.velocity2[0],
@@ -397,6 +441,16 @@ test("getProblem('imperial') return object values are as expected", function(t) 
     getProblem("imperial").knownVariables.elevation1[1],
     "ft",
     "`elevation1[1]` is a `ft`"
+  );
+  t.looseEqual(
+    getProblem("imperial").knownVariables.headLoss[1],
+    "ft",
+    "`headLoss[1]` is a `ft`"
+  );
+  t.looseEqual(
+    getProblem("imperial").knownVariables.pressure2[1],
+    "psf",
+    "`pressure2[1]` is a `psf`"
   );
   t.looseEqual(
     getProblem("imperial").knownVariables.velocity2[1],

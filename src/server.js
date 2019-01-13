@@ -16,9 +16,12 @@ const express = require("express");
 //const getProblem = require("./HeadLoss").getProblem;
 //const RelativeRoughness = require("./RelativeRoughness").RelativeRoughness;
 //const getProblem = require("./RelativeRoughness").getProblem;
-const BernoulliEquationSimplified = require("./BernoulliEquationSimplified")
-  .BernoulliEquationSimplified;
-const getProblem = require("./BernoulliEquationSimplified").getProblem;
+//const BernoulliEquationSimplified = require("./BernoulliEquationSimplified").BernoulliEquationSimplified;
+//const getProblem = require("./BernoulliEquationSimplified").getProblem;
+const BernoulliEquationExpanded = require("./BernoulliEquationExpanded")
+  .BernoulliEquationExpanded;
+const getProblem = require("./BernoulliEquationExpanded").getProblem;
+
 // Setup the basic objects
 dotenv.config();
 const app = express();
@@ -102,7 +105,8 @@ app.route("/").get(function(req, res) {
     //practiceProblem.answer = ReynoldsNumber2(practiceProblem.knownVariables);
     //practiceProblem.answer = HeadLoss(practiceProblem.knownVariables);
     //practiceProblem.answer = RelativeRoughness(practiceProblem.knownVariables);
-    practiceProblem.answer = BernoulliEquationSimplified(
+    //practiceProblem.answer = BernoulliEquationSimplified(practiceProblem.knownVariables);
+    practiceProblem.answer = BernoulliEquationExpanded(
       practiceProblem.knownVariables
     );
   }
