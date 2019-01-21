@@ -15,3 +15,5 @@
    - Teachers: create unlimited practice problems and answers
 ## Core Functionality
    - Generate practice problems for students
+
+<img src="20190109A.gif">
