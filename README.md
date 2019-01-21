@@ -1,8 +1,10 @@
 # Four Week Version
 
 1. What is the next most annoying task to do manually?
-   - Hide the answer before attempting the problem
+   - Wait until problem from desired topic is randomly generated
 2. What is the next most annoying task to do manually?
+   - Hide the answer before attempting the problem
+3. What is the next most annoying task to do manually?
    - Keeping track of their performance on the problems
    
 ## Core Functionality
