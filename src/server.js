@@ -91,7 +91,7 @@ app.route("/").get(function(req, res) {
 
   // Select a topic by user selection
   if (req.query.topic && userSelectedTopic !== req.query.topic) {
-    userSelectedTopic = req.query.topic ? req.query.topic : "ShearStress";
+    userSelectedTopic = req.query.topic;
   }
   let topicModule = require("./" + userSelectedTopic);
   let topicFunction = topicModule[userSelectedTopic];
