@@ -21,7 +21,7 @@ exports.getProblem = function getProblem(unitSystem) {
     velocity2 = [Math.floor(Math.random() * 5 + 1), "m/s"];
     elevation2 = [Math.floor(Math.random() * 5 + 1), "m"];
     headLoss = [Math.floor(Math.random() * 10 + 1), "m"];
-    gamma = [Math.floor(Math.random() * 9810), "N/m^3"];
+    gamma = [Math.floor(Math.random() * 9810) + 1, "N/m^3"];
     gravitationalConstant = [9.81, "m/s^2"];
   }
 
@@ -35,7 +35,7 @@ exports.getProblem = function getProblem(unitSystem) {
     velocity2 = [Math.floor(Math.random() * 15 + 1), "ft/s"];
     elevation2 = [Math.floor(Math.random() * 15 + 1), "ft"];
     headLoss = [Math.floor(Math.random() * 20 + 1), "ft"];
-    gamma = [Math.floor(Math.random() * 62.4), "lb/ft^3"];
+    gamma = [Math.floor(Math.random() * 62.4) + 1, "lb/ft^3"];
     gravitationalConstant = [32.2, "ft/s^2"];
   }
 

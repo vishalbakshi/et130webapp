@@ -1,4 +1,5 @@
 const http = require("http");
+
 // const fs = require("fs");
 const dotenv = require("dotenv");
 const express = require("express");
@@ -18,9 +19,9 @@ const express = require("express");
 //const getProblem = require("./RelativeRoughness").getProblem;
 //const BernoulliEquationSimplified = require("./BernoulliEquationSimplified").BernoulliEquationSimplified;
 //const getProblem = require("./BernoulliEquationSimplified").getProblem;
-const BernoulliEquationExpanded = require("./BernoulliEquationExpanded")
-  .BernoulliEquationExpanded;
-const getProblem = require("./BernoulliEquationExpanded").getProblem;
+//const BernoulliEquationExpanded = require("./BernoulliEquationExpanded")
+// .BernoulliEquationExpanded;
+//const getProblem = require("./BernoulliEquationExpanded").getProblem;
 
 // Setup the basic objects
 dotenv.config();
@@ -41,6 +42,17 @@ const readJson = function(path, callback) {
   });
 };
 */
+let topics = [
+  "BernoulliEquationExpanded",
+  "BernoulliEquationSimplified",
+  "HeadLoss",
+  "PressureHeight",
+  "RelativeRoughness",
+  "ReynoldsNumber1",
+  "ReynoldsNumber2",
+  "ShearStress",
+  "VerticalWallForce"
+];
 
 // Create a defaultProblem that displays on index.pug
 let defaultProblem = {
@@ -55,6 +67,9 @@ let defaultProblem = {
 // Initialize variable that will be sent to readJson in callback
 let practiceProblemsJson;
 
+// Define userSelectedTopic for first load
+let userSelectedTopic = "ShearStress";
+
 // Get JSON data and assign to practiceProblemsJson
 /*
 readJson("./practiceProblems.json", function(data) {
@@ -67,7 +82,20 @@ app.set("view engine", "pug");
 
 // setup routes
 app.route("/").get(function(req, res) {
+  // Select a topic randomly
+  //let topicSelector = Math.floor(Math.random() * (topics.length + 1));
+  //let randomTopic = topics[topicSelector];
+  //let topicFunction = require("./" + randomTopic)[randomTopic];
+  //let getProblem = require("./" + randomTopic).getProblem;
   // Create default problem in case JSON doesn't get read
+
+  // Select a topic by user selection
+  if (req.query.topic && userSelectedTopic !== req.query.topic) {
+    userSelectedTopic = req.query.topic ? req.query.topic : "ShearStress";
+  }
+  let topicModule = require("./" + userSelectedTopic);
+  let topicFunction = topicModule[userSelectedTopic];
+  let getProblem = topicModule.getProblem;
   let practiceProblem = defaultProblem;
 
   // If JSON data has been got, set problem object to its data
@@ -106,9 +134,7 @@ app.route("/").get(function(req, res) {
     //practiceProblem.answer = HeadLoss(practiceProblem.knownVariables);
     //practiceProblem.answer = RelativeRoughness(practiceProblem.knownVariables);
     //practiceProblem.answer = BernoulliEquationSimplified(practiceProblem.knownVariables);
-    practiceProblem.answer = BernoulliEquationExpanded(
-      practiceProblem.knownVariables
-    );
+    practiceProblem.answer = topicFunction(practiceProblem.knownVariables);
   }
 
   // Send the problem object to index.pug

@@ -6,14 +6,14 @@ exports.getProblem = function getProblem(unitSystem) {
     // assign metric values and units
     // variable = [Number value, String unit];
     roughness = [Math.random() * 30e-6 + 1e-6, "m"];
-    diameter = [Math.random(), "m"];
+    diameter = [Math.random() + 0.1, "m"];
   }
 
   if (unitSystem === "imperial") {
     // assign imperial values and units
     // variable = [Number value, String unit];
     roughness = [Math.random() * 30e-5 + 1e-5, "ft"];
-    diameter = [Math.random() * 3, "ft"];
+    diameter = [Math.random() * 3 + 1, "ft"];
   }
 
   let practiceProblem = {

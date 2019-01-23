@@ -3,6 +3,25 @@ html
     title ET 130 Practice Problems
   body 
     h1 ET 130: Practice Problems
+    form(
+      action="/"
+      method="GET"
+    )
+      select(name="topic")
+        option(value="ShearStress") ---Select a topic---
+        option(value="ShearStress") Shear Stress
+        option(value="PressureHeight") Pressure-Height Relationship
+        option(value="VerticalWallForce") Fluid Force on Vertical Wall
+        option(value="ReynoldsNumber1") Reynold's Number (Kinematic Viscosity)
+        option(value="ReynoldsNumber2") Reynold's Number (Dynamic Viscosity)
+        option(value="RelativeRoughness") Relative Roughness
+        option(value="BernoulliEquationSimplified") Bernoulli's Equation (Simplified)
+        option(value="BernoulliEquationExpanded") Bernoulli's Equation (Expanded)
+        option(value="HeadLoss") Head Loss
+      input(
+        type="submit"
+        value="Go"
+      )
     h2='Topic: ' + topic
 
     h3 Problem Statement
