@@ -1,0 +1,7 @@
+.answer {
+  display: none;
+}
+
+.answer.selected {
+  display: block;
+}

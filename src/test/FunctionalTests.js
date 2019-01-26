@@ -1,8 +1,10 @@
-var chaiHttp = require("chai-http");
-var chai = require("chai");
-var assert = chai.assert;
-var Mocha = require("mocha");
-var mocha = new Mocha({ ui: "tdd" });
+const chaiHttp = require("chai-http");
+const chai = require("chai");
+const assert = chai.assert;
+const Mocha = require("mocha");
+const mocha = new Mocha({ ui: "tdd" });
+const selenium = require("selenium-webdriver");
+
 chai.use(chaiHttp);
 
 test("GET response contains correct page headers", function(done) {
@@ -112,4 +114,8 @@ test("User can select topic and receive problems from that topic", function(done
       assert.include(res.text, "ShearStress");
       done();
     });
+});
+
+test("Answer is displayed only if `Show Answer` is clicked", function(done) {
+  done();
 });

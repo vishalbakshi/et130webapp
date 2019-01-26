@@ -26,7 +26,7 @@ const express = require("express");
 // Setup the basic objects
 dotenv.config();
 const app = express();
-
+app.use(express.static("public"));
 /**
  * @param    path        String
  * @param    callback    Function
