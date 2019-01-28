@@ -119,3 +119,11 @@ test("User can select topic and receive problems from that topic", function(done
 test("Answer is displayed only if `Show Answer` is clicked", function(done) {
   done();
 });
+
+test("User can submit an answer", function(done) {
+  done();
+});
+
+test("User receives notification upon answer submission", function(done) {
+  done();
+});
