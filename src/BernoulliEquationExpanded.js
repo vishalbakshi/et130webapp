@@ -90,7 +90,6 @@ exports.BernoulliEquationExpanded = function BernoulliEquationExpanded(
   // get correct units of uknown variable based on input unit system
   if (headLoss[1] === "ft") headAdded[1] = "ft";
   if (headLoss[1] === "m") headAdded[1] = "m";
-  console.log(headAdded);
 
   return { headAdded: headAdded }; // {unknownVariable: [Number value, String unit] }
 };

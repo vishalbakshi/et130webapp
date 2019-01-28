@@ -48,9 +48,11 @@ html
 
     h3 Answer
     .answer
-      ul
-        each val, index in answer
-          li=index + ' = ' + val[0] + ' ' + val[1]
+      each val, index in answer
+        span=index + ' = '
+        span(id="numericAnswer")=val[0] + ' '
+        span(id="unitAnswer")=val[1]
+    br
     button(
       id="showAnswer"
       value="showAnswer"
@@ -58,4 +60,35 @@ html
     script(src="showAnswer.js")
     br
     br
+    form(
+      id="userAnswerForm"
+      action=""
+    )
+      label(for="userAnswer") Submit your answer here:
+      input(
+        type="text"
+        name="userAnswer"
+      )
+      select(
+        name="unitChoices"
+      )
+        option(name="N") N
+        option(name="Pa") Pa
+        option(name="ncm") N/m^3
+        option(name="m") m
+        option(name="kg") kg
+        option(name="lbs") lbs
+        option(name="psf") lb/ft^2
+        option(name="pcf") lb/ft^3
+        option(name="ft") ft
+        option(name="slugs") slugs
+        option(name="unitless") unitless
+      input(
+        name="userAnswerSubmit"
+        type="submit"
+        value="Submit my answer"
+      )
+    span(id="checkAnswerResponse") 
+    br
     a(href="/") New Problem
+    script(src='checkAnswer.js')
