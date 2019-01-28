@@ -1,16 +1,14 @@
 QUnit.test("Answer display property correctly assigned", function(assert) {
-  let answerDisplayStyle = $(".answer").css("display");
   assert.equal(
-    answerDisplayStyle,
+    $(".answer").css("display"),
     "none",
     "Answer hidden on initial page load"
   );
 
   $("#showAnswer").trigger("click");
-  answerDisplayStyle = $(".answer").css("display");
 
   assert.equal(
-    answerDisplayStyle,
+    $(".answer").css("display"),
     "block",
     "Answer displays upon clicking button with `showAnswer` id"
   );
@@ -49,13 +47,12 @@ QUnit.test("User receives a message after answer submission", function(assert) {
   );
 });
 
-/*
 QUnit.test(
   "User receives appropriate message when submitting incorrect units",
   function(assert) {
     $("input[name=userAnswer]").val($("#numericAnswer").text());
-    $("#unitChoices").val("N/A");
-    $("#userAnswerSubmit").trigger("click");
+    $("select[name=unitChoices]").val("unitless");
+    $("input[name=userAnswerSubmit]").trigger("click");
 
     assert.equal(
       $("#checkAnswerResponse").text(),
@@ -65,13 +62,12 @@ QUnit.test(
   }
 );
 
-
 QUnit.test(
   "User receives appropriate message when submitting incorrect numeric answer",
-  function (assert) {
+  function(assert) {
     $("input[name=userAnswer]").val("N/A");
-    $("#unitChoices").val($("#unitAnswer").text());
-    $("#userAnswerSubmit").trigger("click");
+    $("select[name=unitChoices]").val($("#unitAnswer").text());
+    $("input[name=userAnswerSubmit]").trigger("click");
     assert.equal(
       $("#checkAnswerResponse").text(),
       "Incorrect numeric answer",
@@ -79,4 +75,32 @@ QUnit.test(
     );
   }
 );
-*/
+
+QUnit.test(
+  "User receives appropriate message when submitting incorrect numeric and unit answer",
+  function(assert) {
+    $("input[name=userAnswer]").val("N/A");
+    $("select[name=unitChoices]").val("unitless");
+    $("input[name=userAnswerSubmit]").trigger("click");
+    assert.equal(
+      $("#checkAnswerResponse").text(),
+      "Incorrect numeric answer and units!",
+      "User receives message when submitting incorrect numeric answer and units"
+    );
+  }
+);
+
+QUnit.test(
+  "User receives appropriate message when submitting correct numeric answer and units",
+  function(assert) {
+    $("input[name=userAnswer]").val($("#numericAnswer").text());
+    $("select[name=unitChoices]").val($("#unitAnswer").text());
+    $("input[name=userAnswerSubmit]").trigger("click");
+
+    assert.equal(
+      $("#checkAnswerResponse").text(),
+      "Correct!",
+      "User receives message when submitting correct numeric answer and units"
+    );
+  }
+);
