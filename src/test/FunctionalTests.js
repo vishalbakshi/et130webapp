@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 const port = process.env.PORT || 8080;
 
-test("GET response contains correct page headers", function(done) {
+test("GET response contains correct page headings", function(done) {
   chai
     .request("http://localhost:" + port)
     .get("/")
