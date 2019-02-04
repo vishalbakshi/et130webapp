@@ -108,7 +108,7 @@ app.route("/test").get(function(req, res) {
   res.render("test", practiceProblem);
 });
 
-const server = app.listen(process.env.PORT || 8080, function() {
+const server = app.listen(process.env.PORT , function() {
   console.log("express listening on port");
 });
 
