@@ -9,7 +9,8 @@
    
 ## Core Functionality
    - Students can generate new problems, view the answer when they desire to do so, and track their perfomance for each topic.
-   
+
+<img src="20190202A.gif">
 # Two Week Version
 
 1. What task is impossible to do manually?
