@@ -1,7 +1,7 @@
 const test = require("tape");
-const BernoulliEquationExpanded = require("./BernoulliEquationExpanded")
+const BernoulliEquationExpanded = require("../BernoulliEquationExpanded")
   .BernoulliEquationExpanded;
-const getProblem = require("./BernoulliEquationExpanded").getProblem;
+const getProblem = require("../BernoulliEquationExpanded").getProblem;
 
 // ===== UNIT TESTS:  BernoulliEquationExpanded() ===== //
 // input argument for BernoulliEquationExpanded function

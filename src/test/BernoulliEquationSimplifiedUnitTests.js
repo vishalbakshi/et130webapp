@@ -1,7 +1,7 @@
 const test = require("tape");
-const BernoulliEquationSimplified = require("./BernoulliEquationSimplified")
+const BernoulliEquationSimplified = require("../BernoulliEquationSimplified")
   .BernoulliEquationSimplified;
-const getProblem = require("./BernoulliEquationSimplified").getProblem;
+const getProblem = require("../BernoulliEquationSimplified").getProblem;
 
 // ===== UNIT TESTS:  BernoulliEquationSimplified() ===== //
 // input argument for BernoulliEquationSimplified function

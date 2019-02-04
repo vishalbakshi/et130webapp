@@ -1,6 +1,6 @@
 const test = require("tape");
-const PressureHeight = require("./PressureHeight").PressureHeight;
-const getProblem = require("./PressureHeight").getProblem;
+const PressureHeight = require("../PressureHeight").PressureHeight;
+const getProblem = require("../PressureHeight").getProblem;
 
 // ===== UNIT TESTS:  PressureHeight() ===== //
 // input argument for PressureHeight function

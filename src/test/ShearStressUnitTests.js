@@ -1,6 +1,6 @@
 const test = require("tape");
-const ShearStress = require("./ShearStress").ShearStress;
-const getProblem = require("./ShearStress").getProblem;
+const ShearStress = require("../ShearStress").ShearStress;
+const getProblem = require("../ShearStress").getProblem;
 
 // ===== UNIT TESTS:  ShearStress() ===== //
 // input argument for ShearStress function

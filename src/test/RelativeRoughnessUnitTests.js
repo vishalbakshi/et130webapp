@@ -1,6 +1,6 @@
 const test = require("tape");
-const RelativeRoughness = require("./RelativeRoughness").RelativeRoughness;
-const getProblem = require("./RelativeRoughness").getProblem;
+const RelativeRoughness = require("../RelativeRoughness").RelativeRoughness;
+const getProblem = require("../RelativeRoughness").getProblem;
 
 // ===== UNIT TESTS:  RelativeRoughness() ===== //
 // input argument for RelativeRoughness function

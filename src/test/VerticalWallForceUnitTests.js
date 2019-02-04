@@ -1,6 +1,6 @@
 const test = require("tape");
-const VerticalWallForce = require("./VerticalWallForce").VerticalWallForce;
-const getProblem = require("./VerticalWallForce").getProblem;
+const VerticalWallForce = require("../VerticalWallForce").VerticalWallForce;
+const getProblem = require("../VerticalWallForce").getProblem;
 
 // ===== UNIT TESTS:  VerticalWallForce() ===== //
 // input argument for VerticalWallForce function

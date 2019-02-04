@@ -1,98 +1,89 @@
 const test = require("tape");
-const ReynoldsNumber2 = require("./ReynoldsNumber2").ReynoldsNumber2;
-const getProblem = require("./ReynoldsNumber2").getProblem;
+const ReynoldsNumber1 = require("../ReynoldsNumber1").ReynoldsNumber1;
+const getProblem = require("../ReynoldsNumber1").getProblem;
 
-// ===== UNIT TESTS:  ReynoldsNumber2() ===== //
-// input argument for ReynoldsNumber2 function
+// ===== UNIT TESTS:  ReynoldsNumber1() ===== //
+// input argument for ReynoldsNumber1 function
 let knownVariables = {
   velocity: [1, "m/s"],
   diameter: [1, "m"],
-  dynamicViscosity: [1, "m"],
-  density: [1, "kg/m^3"]
+  kinematicViscosity: [1, "m"]
 };
 
-test("`ReynoldsNumber2` is a function", function(t) {
-  t.equal(typeof ReynoldsNumber2, "function");
+test("`ReynoldsNumber1` is a function", function(t) {
+  t.equal(typeof ReynoldsNumber1, "function");
   t.end();
 });
 
-test("`ReynoldsNumber2` returns an object", function(t) {
-  t.equal(typeof ReynoldsNumber2(knownVariables), "object");
+test("`ReynoldsNumber1` returns an object", function(t) {
+  t.equal(typeof ReynoldsNumber1(knownVariables), "object");
   t.end();
 });
 
-test("`ReynoldsNumber2` return object has `reynoldsNumber` key", function(t) {
-  t.looseEqual(Object.keys(ReynoldsNumber2(knownVariables)), [
+test("`ReynoldsNumber1` return object has `reynoldsNumber` key", function(t) {
+  t.looseEqual(Object.keys(ReynoldsNumber1(knownVariables)), [
     "reynoldsNumber"
   ]);
   t.end();
 });
 
-test("`ReynoldsNumber2` return object[`reynoldsNumber`] is an array", function(t) {
+test("`ReynoldsNumber1` return object[`reynoldsNumber`] is an array", function(t) {
   t.looseEqual(
-    Array.isArray(ReynoldsNumber2(knownVariables)["reynoldsNumber"]),
+    Array.isArray(ReynoldsNumber1(knownVariables)["reynoldsNumber"]),
     true
   );
   t.end();
 });
 
-test("`ReynoldsNumber2` returns correct value of metric `reynoldsNumber`", function(t) {
+test("`ReynoldsNumber1` returns correct value of metric `reynoldsNumber`", function(t) {
   let knownVariables = {
     velocity: [Math.floor(Math.random() * 5 + 1), "m/s"],
     diameter: [Math.random(), "m"],
-    dynamicViscosity: [1.6e-3 * Math.random() + 0.1e-3, "Pa*s"],
-    density: [Math.floor(Math.random() * 1000 + 1), "kg/m^3"]
+    kinematicViscosity: [1.6e-6 * Math.random() + 0.1e-6, "m^2/s"]
   };
 
   let reynoldsNumber =
-    (knownVariables.velocity[0] *
-      knownVariables.density[0] *
-      knownVariables.diameter[0]) /
-    knownVariables.dynamicViscosity[0];
+    (knownVariables.velocity[0] * knownVariables.diameter[0]) /
+    knownVariables.kinematicViscosity[0];
 
-  t.equal(ReynoldsNumber2(knownVariables)["reynoldsNumber"][0], reynoldsNumber);
+  t.equal(ReynoldsNumber1(knownVariables)["reynoldsNumber"][0], reynoldsNumber);
   t.end();
 });
 
-test("`ReynoldsNumber2` returns correct unit of metric `reynoldsNumber`", function(t) {
+test("`ReynoldsNumber1` returns correct unit of metric `reynoldsNumber`", function(t) {
   let knownVariables = {
     velocity: [Math.floor(Math.random() * 5 + 1), "m/s"],
     diameter: [Math.random(), "m"],
-    dynamicViscosity: [1.6e-3 * Math.random() + 0.1e-3, "Pa*s"],
-    density: [Math.floor(Math.random() * 1000 + 1), "kg/m^3"]
+    kinematicViscosity: [1.6e-6 * Math.random() + 0.1e-6, "m^2/s"]
   };
 
-  t.equal(ReynoldsNumber2(knownVariables)["reynoldsNumber"][1], "");
+  t.equal(ReynoldsNumber1(knownVariables)["reynoldsNumber"][1], "");
   t.end();
 });
 
-test("`ReynoldsNumber2` returns correct value of imperial `reynoldsNumber`", function(t) {
+test("`ReynoldsNumber1` returns correct value of imperial `reynoldsNumber`", function(t) {
   let knownVariables = {
     velocity: [Math.floor(Math.random() * 15 + 1), "ft/s"],
     diameter: [Math.random() * 3, "ft"],
-    dynamicViscosity: [3.6e-5 * Math.random() + 0.1e-5, "lb*s/ft^2"],
-    density: [Math.floor(Math.random() * 1.94), "slugs/ft^3"]
+    kinematicViscosity: [1.7e-5 * Math.random() + 0.1e-5, "ft^2/s"]
   };
 
   let reynoldsNumber =
-    (knownVariables.velocity[0] *
-      knownVariables.density[0] *
-      knownVariables.diameter[0]) /
-    knownVariables.dynamicViscosity[0];
+    (knownVariables.velocity[0] * knownVariables.diameter[0]) /
+    knownVariables.kinematicViscosity[0];
 
-  t.equal(ReynoldsNumber2(knownVariables)["reynoldsNumber"][0], reynoldsNumber);
+  t.equal(ReynoldsNumber1(knownVariables)["reynoldsNumber"][0], reynoldsNumber);
   t.end();
 });
 
-test("`ReynoldsNumber2` returns correct unit of imperial `reynoldsNumber`", function(t) {
+test("`ReynoldsNumber1` returns correct unit of imperial `tau`", function(t) {
   let knownVariables = {
     velocity: [Math.floor(Math.random() * 15 + 1), "ft/s"],
     diameter: [Math.random() * 3, "ft"],
-    dynamicViscosity: [3.6e-5 * Math.random() + 0.1e-5, "lb*s/ft^2"],
-    density: [Math.floor(Math.random() * 1.94), "slugs/ft^3"]
+    kinematicViscosity: [1.7e-5 * Math.random() + 0.1e-5, "ft^2/s"]
   };
 
-  t.equal(ReynoldsNumber2(knownVariables)["reynoldsNumber"][1], "");
+  t.equal(ReynoldsNumber1(knownVariables)["reynoldsNumber"][1], "");
   t.end();
 });
 
@@ -150,8 +141,8 @@ test("getProblem('metric') return object keys hold values of the correct type", 
 test("getProblem('metric') return object values are as expected", function(t) {
   t.looseEqual(
     getProblem("metric").topic,
-    "ReynoldsNumber2",
-    "`topic` is `ReynoldsNumber2`"
+    "ReynoldsNumber1",
+    "`topic` is `ReynoldsNumber1`"
   );
   t.looseEqual(
     getProblem("metric").problemStatement,
@@ -160,8 +151,8 @@ test("getProblem('metric') return object values are as expected", function(t) {
   );
   t.looseEqual(
     Object.keys(getProblem("metric").knownVariables),
-    ["velocity", "diameter", "dynamicViscosity", "density"],
-    "`knownVariables` keys are `velocity`, `diameter`, `dynamicViscosity` and `density`"
+    ["velocity", "diameter", "kinematicViscosity"],
+    "`knownVariables` keys are `velocity`, `diameter` and `kinematicViscosity`"
   );
   t.looseEqual(
     typeof getProblem("metric").knownVariables.velocity[0],
@@ -174,14 +165,9 @@ test("getProblem('metric') return object values are as expected", function(t) {
     "`diameter[0]` is a number"
   );
   t.looseEqual(
-    typeof getProblem("metric").knownVariables.dynamicViscosity[0],
+    typeof getProblem("metric").knownVariables.kinematicViscosity[0],
     "number",
-    "`dynamicViscosity[0]` is a number"
-  );
-  t.looseEqual(
-    typeof getProblem("metric").knownVariables.density[0],
-    "number",
-    "`density[0]` is a number"
+    "`kinematicViscosity[0]` is a number"
   );
   t.looseEqual(
     getProblem("metric").knownVariables.velocity[1],
@@ -194,15 +180,9 @@ test("getProblem('metric') return object values are as expected", function(t) {
     "`diameter[1]` is `m`"
   );
   t.looseEqual(
-    getProblem("metric").knownVariables.dynamicViscosity[1],
-    "Pa*s",
-    "`dynamicViscosity[1]` is `Pa*s`"
-  );
-
-  t.looseEqual(
-    getProblem("metric").knownVariables.density[1],
-    "kg/m^3",
-    "`density[1]` is `kg/m^3`"
+    getProblem("metric").knownVariables.kinematicViscosity[1],
+    "m^2/s",
+    "`kinematicViscosity[1]` is `m^2/s`"
   );
 
   t.end();
@@ -256,8 +236,8 @@ test("getProblem('imperial') return object keys hold values of the correct type"
 test("getProblem('imperial') return object values are as expected", function(t) {
   t.looseEqual(
     getProblem("imperial").topic,
-    "ReynoldsNumber2",
-    "`topic` is `ReynoldsNumber2`"
+    "ReynoldsNumber1",
+    "`topic` is `ReynoldsNumber1`"
   );
   t.looseEqual(
     getProblem("imperial").problemStatement,
@@ -266,8 +246,8 @@ test("getProblem('imperial') return object values are as expected", function(t) 
   );
   t.looseEqual(
     Object.keys(getProblem("imperial").knownVariables),
-    ["velocity", "diameter", "dynamicViscosity", "density"],
-    "`knownVariables` keys are `velocity`, `diameter`, `dynamicViscosity` and `density`"
+    ["velocity", "diameter", "kinematicViscosity"],
+    "`knownVariables` keys are `velocity`, `diameter` and `kinematicViscosity`"
   );
   t.looseEqual(
     typeof getProblem("imperial").knownVariables.velocity[0],
@@ -280,14 +260,9 @@ test("getProblem('imperial') return object values are as expected", function(t) 
     "`diameter[0]` is a number"
   );
   t.looseEqual(
-    typeof getProblem("imperial").knownVariables.dynamicViscosity[0],
+    typeof getProblem("imperial").knownVariables.kinematicViscosity[0],
     "number",
-    "`dynamicViscosity[0]` is a number"
-  );
-  t.looseEqual(
-    typeof getProblem("imperial").knownVariables.density[0],
-    "number",
-    "`density[0]` is a number"
+    "`kinematicViscosity[0]` is a number"
   );
   t.looseEqual(
     getProblem("imperial").knownVariables.velocity[1],
@@ -300,15 +275,9 @@ test("getProblem('imperial') return object values are as expected", function(t) 
     "`diameter[1]` is `ft`"
   );
   t.looseEqual(
-    getProblem("imperial").knownVariables.dynamicViscosity[1],
-    "lb*s/ft^2",
-    "`dynamicViscosity[1]` is `lb*s/ft^2`"
-  );
-
-  t.looseEqual(
-    getProblem("imperial").knownVariables.density[1],
-    "slugs/ft^3",
-    "`density[1]` is `slugs/ft^3`"
+    getProblem("imperial").knownVariables.kinematicViscosity[1],
+    "ft^2/s",
+    "`kinematicViscosity[1]` is `ft^2/s`"
   );
 
   t.end();

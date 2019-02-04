@@ -1,6 +1,6 @@
 const test = require("tape");
-const HeadLoss = require("./HeadLoss").HeadLoss;
-const getProblem = require("./HeadLoss").getProblem;
+const HeadLoss = require("../HeadLoss").HeadLoss;
+const getProblem = require("../HeadLoss").getProblem;
 
 // ===== UNIT TESTS:  HeadLoss() ===== //
 // input argument for HeadLoss function
