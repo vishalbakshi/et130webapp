@@ -1,3 +1,11 @@
+# Six Week Version
+1. What is impossible to do manually?
+   - Access the web app--time to deploy!
+2. What is the next most annoying task to do manually?
+   - Teacher keeps track of student progress
+3. What is the next most annoying task to do manually?
+   - Try to enjoy the current UI
+
 # Four Week Version
 
 1. What is the next most annoying task to do manually?
