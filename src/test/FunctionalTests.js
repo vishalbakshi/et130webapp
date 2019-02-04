@@ -7,9 +7,11 @@ const selenium = require("selenium-webdriver");
 const server = require("../server.js")
 chai.use(chaiHttp);
 
+const port = 80;
+
 test("GET response contains correct page headers", function(done) {
   chai
-    .request("http://localhost:8080")
+    .request("http://localhost:" + port)
     .get("/")
     .end(function(err, res) {
       assert.equal(res.status, 200, "Response status should be 200");
@@ -26,7 +28,7 @@ test("GET response contains correct page headers", function(done) {
 
 test("User can select topic and receive problems from that topic", function(done) {
   chai
-    .request("http://localhost:8080")
+    .request("http://localhost:" + port)
     .get("/")
     .query({ topic: "PressureHeight" })
     .end(function(err, res) {
@@ -35,7 +37,7 @@ test("User can select topic and receive problems from that topic", function(done
     });
 
   chai
-    .request("http://localhost:8080")
+    .request("http://localhost:" + port)
     .get("/")
     .query({ topic: "VerticalWallForce" })
     .end(function(err, res) {
@@ -44,7 +46,7 @@ test("User can select topic and receive problems from that topic", function(done
     });
 
   chai
-    .request("http://localhost:8080")
+    .request("http://localhost:" + port)
     .get("/")
     .query({ topic: "ReynoldsNumber1" })
     .end(function(err, res) {
@@ -53,7 +55,7 @@ test("User can select topic and receive problems from that topic", function(done
     });
 
   chai
-    .request("http://localhost:8080")
+    .request("http://localhost:" + port)
     .get("/")
     .query({ topic: "ReynoldsNumber2" })
     .end(function(err, res) {
@@ -62,7 +64,7 @@ test("User can select topic and receive problems from that topic", function(done
     });
 
   chai
-    .request("http://localhost:8080")
+    .request("http://localhost:" + port)
     .get("/")
     .query({ topic: "RelativeRoughness" })
     .end(function(err, res) {
@@ -71,7 +73,7 @@ test("User can select topic and receive problems from that topic", function(done
     });
 
   chai
-    .request("http://localhost:8080")
+    .request("http://localhost:" + port)
     .get("/")
     .query({ topic: "BernoulliEquationSimplified" })
     .end(function(err, res) {
@@ -80,7 +82,7 @@ test("User can select topic and receive problems from that topic", function(done
     });
 
   chai
-    .request("http://localhost:8080")
+    .request("http://localhost:" + port)
     .get("/")
     .query({ topic: "BernoulliEquationExpanded" })
     .end(function(err, res) {
@@ -89,7 +91,7 @@ test("User can select topic and receive problems from that topic", function(done
     });
 
   chai
-    .request("http://localhost:8080")
+    .request("http://localhost:" + port)
     .get("/")
     .query({ topic: "HeadLoss" })
     .end(function(err, res) {
@@ -107,7 +109,7 @@ test("User can select topic and receive problems from that topic", function(done
     });
 
   chai
-    .request("http://localhost:8080")
+    .request("http://localhost:" + port)
     .get("/")
     .end(function(err, res) {
       assert.equal(res.status, 200, "Response status should be 200");
