@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 test("GET response contains correct page headers", function(done) {
   chai
-    .request(server)
+    .request("http://localhost:8080")
     .get("/")
     .end(function(err, res) {
       assert.equal(res.status, 200, "Response status should be 200");
