@@ -4,12 +4,12 @@ const assert = chai.assert;
 const Mocha = require("mocha");
 const mocha = new Mocha({ ui: "tdd" });
 const selenium = require("selenium-webdriver");
-const server = require("./server.js")
+const server = require("../server.js")
 chai.use(chaiHttp);
 
 test("GET response contains correct page headers", function(done) {
   chai
-    .request("http://localhost:8080")
+    .request(server)
     .get("/")
     .end(function(err, res) {
       assert.equal(res.status, 200, "Response status should be 200");
