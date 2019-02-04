@@ -4,7 +4,6 @@
   "description": "ET 130 Web App",
   "main": "src/server.js",
   "scripts": {
-    "start": "nodemon src/server.js localhost 8080",
     "test": "mocha --exit --ui tdd ./src/test"
   },
   "dependencies": {
