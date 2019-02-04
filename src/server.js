@@ -108,8 +108,8 @@ app.route("/test").get(function(req, res) {
   res.render("test", practiceProblem);
 });
 
-const server = app.listen(80, function() {
-  console.log("express listening on 80");
+const server = app.listen(8080, function() {
+  console.log("express listening on 8080");
 });
 
 module.exports = { app: app, server: server };
