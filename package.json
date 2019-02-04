@@ -4,7 +4,9 @@
   "description": "ET 130 Web App",
   "main": "src/server.js",
   "scripts": {
+    "start": "node src/server.js",
     "test": "mocha --exit --ui tdd ./src/test"
+
   },
   "dependencies": {
     "body-parser": "1.18.3",

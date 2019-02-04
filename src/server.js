@@ -1,27 +1,8 @@
 const http = require("http");
-
-// const fs = require("fs");
 const dotenv = require("dotenv");
 const express = require("express");
-//const ShearStress = require("./ShearStress").ShearStress;
-//const getProblem = require("./ShearStress").getProblem;
-//const PressureHeight = require("./PressureHeight").PressureHeight;
-//const getProblem = require("./PressureHeight").getProblem;
-//const VerticalWallForce = require("./VerticalWallForce").VerticalWallForce;
-//const getProblem = require("./VerticalWallForce").getProblem;
-//const ReynoldsNumber1 = require("./ReynoldsNumber1").ReynoldsNumber1;
-//const getProblem = require("./ReynoldsNumber1").getProblem;
-//const ReynoldsNumber2 = require("./ReynoldsNumber2").ReynoldsNumber2;
-//const getProblem = require("./ReynoldsNumber2").getProblem;
-//const HeadLoss = require("./HeadLoss").HeadLoss;
-//const getProblem = require("./HeadLoss").getProblem;
-//const RelativeRoughness = require("./RelativeRoughness").RelativeRoughness;
-//const getProblem = require("./RelativeRoughness").getProblem;
-//const BernoulliEquationSimplified = require("./BernoulliEquationSimplified").BernoulliEquationSimplified;
-//const getProblem = require("./BernoulliEquationSimplified").getProblem;
-//const BernoulliEquationExpanded = require("./BernoulliEquationExpanded")
-// .BernoulliEquationExpanded;
-//const getProblem = require("./BernoulliEquationExpanded").getProblem;
+const port = process.env.PORT || 8080;
+
 
 // Setup the basic objects
 dotenv.config();
@@ -108,8 +89,8 @@ app.route("/test").get(function(req, res) {
   res.render("test", practiceProblem);
 });
 
-const server = app.listen(process.env.PORT , function() {
-  console.log("express listening on port");
+const server = app.listen(port, function() {
+  console.log("express listening on: " + port);
 });
 
 module.exports = { app: app, server: server };
