@@ -3,7 +3,6 @@ const dotenv = require("dotenv");
 const express = require("express");
 const port = process.env.PORT || 8080;
 
-
 // Setup the basic objects
 dotenv.config();
 const app = express();
@@ -38,14 +37,12 @@ let practiceProblemsJson;
 // Define userSelectedTopic for first load
 let userSelectedTopic = "ShearStress";
 
-
 // app methods
 // use pug as view engine
 app.set("view engine", "pug");
 
 // setup routes
 app.route("/").get(function(req, res) {
-  
   // Select a topic by user selection
   if (req.query.topic && userSelectedTopic !== req.query.topic) {
     userSelectedTopic = req.query.topic;
