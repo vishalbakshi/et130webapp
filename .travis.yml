@@ -9,7 +9,7 @@ cache:
 before_script:
   - npm install connect
   - node src/server.js ../../ 8080 &
-  - sleep 5
+  - sleep 15
 
 script: 
   - phantomjs src/test/run_qunit.js "http://localhost:8080/test"
