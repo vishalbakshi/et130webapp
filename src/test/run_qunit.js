@@ -80,6 +80,8 @@ page.open(system.args[1], function(status) {
       },
       function() {
         var failedNum = page.evaluate(function() {
+          let failedTests = document.getELementsByClassName("fail");
+          console.log(failedTests[0]);
           var el = document.getElementById("qunit-testresult");
           console.log(el.innerText);
           try {
