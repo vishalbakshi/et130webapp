@@ -79,6 +79,11 @@ page.open(system.args[1], function(status) {
         });
       },
       function() {
+        let failedTest = page.evaluate(function() {
+          let el = document.getElementById("qunit-tests");
+          let failedTests = el.getElementsByClassName("fail");
+          console.log(Array.isArray(failedTests));
+        });
         var failedNum = page.evaluate(function() {
           var el = document.getElementById("qunit-testresult");
           console.log(el.innerText);
