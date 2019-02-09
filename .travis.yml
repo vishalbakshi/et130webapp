@@ -8,7 +8,7 @@ cache:
 
 before_script:
   - npm install connect
-  - node test/js/server.js ../../ 8080 &
+  - node src/server.js ../../ 8080 &
   - sleep 5
 
 script: 
