@@ -90,7 +90,7 @@ page.open(system.args[1], function(status) {
           return 10000;
         });
         console.log(failedNum);
-        console.log(document.getElementByClass("fail"));
+        console.log(document.getElementsByClassName("fail"));
         phantom.exit(parseInt(failedNum, 10) > 0 ? 1 : 0);
       }
     );
