@@ -6,7 +6,10 @@ cache:
   directories:
     - "node_modules"
 
-script:
-  - "sh testrunner.sh"
-  - sleep 25
-  - npm test
+before_script:
+  - npm install connect
+  - node test/js/server.js ../../ 8080 &
+  - sleep 5
+
+script: 
+  - phantomjs src/test/run_qunit.js "http://localhost:8080/test"
