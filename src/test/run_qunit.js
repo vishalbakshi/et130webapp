@@ -9,6 +9,7 @@ page.open(url, function() {
   phantom.exit(0);
 });
 */
+// thanks ariya: https://ariya.io/2012/03/phantomjs-and-travis-ci
 "use strict";
 var system = require("system");
 
