@@ -15,5 +15,7 @@ before_install:
   - "if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then tar -xvf $PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs; fi"
   - "phantomjs --version"
 
-before_script:
-- "npm start"
+script
+  - npm start &
+  - sleep 25
+  - npm test
