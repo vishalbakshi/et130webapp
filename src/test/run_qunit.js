@@ -4,4 +4,6 @@ const page = require("webpage").create();
 const port = process.env.PORT || 8080;
 const url = "http://localhost:" + port + "/test";
 
-phantom.exit(0);
+page.open(url, function() {
+  phantom.exit(0);
+});
