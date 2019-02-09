@@ -16,6 +16,6 @@ before_install:
   - "phantomjs --version"
 
 script:
-  - testrunner.sh
+  - "sh testrunner.sh"
   - sleep 25
   - npm test
