@@ -10,6 +10,7 @@ page.open(url, function() {
 });
 */
 // thanks ariya: https://ariya.io/2012/03/phantomjs-and-travis-ci
+// https://github.com/ariya/phantomjs/blob/master/examples/run-qunit.js
 "use strict";
 var system = require("system");
 
@@ -47,7 +48,7 @@ function waitFor(testFx, onReady, timeOutMillis) {
           clearInterval(interval); //< Stop this interval
         }
       }
-    }, 100); //< repeat check every 250ms
+    }, 250); //< repeat check every 250ms
 }
 
 if (system.args.length !== 2) {
@@ -83,11 +84,13 @@ page.open(system.args[1], function(status) {
           console.log(el.innerText);
           try {
             return el.getElementsByClassName("failed")[0].innerHTML;
-          } catch (e) {}
+          } catch (e) {
+            console.error("Error in qunit tests: ", e);
+          }
           return 10000;
         });
-        phantom.exit(0);
-        //phantom.exit(parseInt(failedNum, 10) > 0 ? 1 : 0);
+        console.log(failedNum);
+        phantom.exit(parseInt(failedNum, 10) > 0 ? 1 : 0);
       }
     );
   }
