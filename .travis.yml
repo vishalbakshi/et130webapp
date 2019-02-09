@@ -16,5 +16,4 @@ before_install:
   - "phantomjs --version"
 
 before_script:
-- "export DISPLAY=:99.0"
-- "sh -e node src/server.js"
+- "npm start"
