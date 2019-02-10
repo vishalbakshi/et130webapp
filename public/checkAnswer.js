@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $("#userAnswerForm").submit(function(e) {
     checkAnswer();
-    e.preventDefault;
+    e.preventDefault();
     return false;
   });
 });

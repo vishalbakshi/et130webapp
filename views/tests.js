@@ -39,7 +39,7 @@ QUnit.test("User has submit button available", function(assert) {
 });
 
 QUnit.test("User receives a message after answer submission", function(assert) {
-  checkAnswer();
+  $('#userAnswerSubmit').trigger('click');
   assert.notEqual(
     $("#checkAnswerResponse").text(),
     "",
@@ -62,12 +62,14 @@ QUnit.test(
   }
 );
 
+
 QUnit.test(
   "User receives appropriate message when submitting incorrect numeric answer",
   function(assert) {
     $("input[name=userAnswer]").val("N/A");
     $("select[name=unitChoices]").val($("#unitAnswer").text());
     $("input[name=userAnswerSubmit]").trigger("click");
+    
     assert.equal(
       $("#checkAnswerResponse").text(),
       "Incorrect numeric answer",
@@ -82,6 +84,7 @@ QUnit.test(
     $("input[name=userAnswer]").val("N/A");
     $("select[name=unitChoices]").val("unitless");
     $("input[name=userAnswerSubmit]").trigger("click");
+    
     assert.equal(
       $("#checkAnswerResponse").text(),
       "Incorrect numeric answer and units!",

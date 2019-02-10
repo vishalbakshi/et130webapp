@@ -1,14 +1,3 @@
-/*
-"use strict";
-
-const page = require("webpage").create();
-const port = process.env.PORT || 8080;
-const url = "http://localhost:" + port + "/test";
-
-page.open(url, function() {
-  phantom.exit(0);
-});
-*/
 // thanks ariya: https://ariya.io/2012/03/phantomjs-and-travis-ci
 // https://github.com/ariya/phantomjs/blob/master/examples/run-qunit.js
 "use strict";
@@ -48,7 +37,7 @@ function waitFor(testFx, onReady, timeOutMillis) {
           clearInterval(interval); //< Stop this interval
         }
       }
-    }, 250); //< repeat check every 250ms
+    }, 10); //
 }
 
 if (system.args.length !== 2) {
@@ -57,10 +46,16 @@ if (system.args.length !== 2) {
 }
 
 var page = require("webpage").create();
+page.settings.resourceTimeout = 10000;
 
 // Route "console.log()" calls from within the Page context to the main Phantom context (i.e. current "this")
 page.onConsoleMessage = function(msg) {
   console.log(msg);
+};
+
+page.onResourceError = function(resourceError) {
+  console.log('Unable to load resource (#' + resourceError.id + 'URL:' + resourceError.url + ')');
+  console.log('Error code: ' + resourceError.errorCode + '. Description: ' + resourceError.errorString);
 };
 
 page.open(system.args[1], function(status) {
@@ -79,12 +74,8 @@ page.open(system.args[1], function(status) {
         });
       },
       function() {
-        let failedTest = page.evaluate(function() {
-          let el = document.getElementById("qunit-tests");
-          let failedTests = el.getElementsByClassName("fail");
-          console.log(Array.isArray(failedTests));
-        });
         var failedNum = page.evaluate(function() {
+          console.log(document.getElementsByClassName('fail')[0].innerText);
           var el = document.getElementById("qunit-testresult");
           console.log(el.innerText);
           try {
@@ -94,7 +85,6 @@ page.open(system.args[1], function(status) {
           }
           return 10000;
         });
-
         phantom.exit(parseInt(failedNum, 10) > 0 ? 1 : 0);
       }
     );
