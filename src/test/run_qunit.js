@@ -74,6 +74,15 @@ page.open(system.args[1], function(status) {
         });
       },
       function() {
+<<<<<<< HEAD
+=======
+        let failedTest = page.evaluate(function() {
+          let el = document.getElementById("qunit-tests");
+          let failedTests = el.getElementsByClassName("fail");
+          console.log(Array.isArray(failedTests));
+        });
+
+>>>>>>> 43b2e92e36206d5af93ddf0cb14b2c1af07885b9
         var failedNum = page.evaluate(function() {
           console.log(document.getElementsByClassName('fail')[0].innerText);
           var el = document.getElementById("qunit-testresult");
