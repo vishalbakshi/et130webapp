@@ -4,7 +4,8 @@ const assert = chai.assert;
 const Mocha = require("mocha");
 const mocha = new Mocha({ ui: "tdd" });
 const selenium = require("selenium-webdriver");
-const server = require("../server.js")
+
+
 chai.use(chaiHttp);
 
 const port = process.env.PORT || 8080;

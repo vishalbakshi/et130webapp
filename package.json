@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node src/server.js",
     "test": "mocha --exit --ui tdd ./src/test"
-
   },
   "dependencies": {
     "body-parser": "1.18.3",
@@ -17,6 +16,7 @@
     "express": "4.16.4",
     "mocha": "5.2.0",
     "pug": "2.0.3",
+    "puppeteer": "^1.12.2",
     "qunit": "2.9.1",
     "selenium-webdriver": "4.0.0-alpha.1",
     "tape": "4.9.2"

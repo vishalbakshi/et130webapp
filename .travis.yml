@@ -5,3 +5,21 @@ node_js:
 cache:
   directories:
     - "node_modules"
+
+dist: trusty
+
+addons:
+  chrome: stable
+
+before_script:
+  - npm install connect
+  - node src/server.js ../../ 8080 & 
+  - sleep 15
+
+script: 
+  - node views/puppeteerTest.js
+  - npm test
+
+before_install:
+  - # start your web application and listen on `localhost`
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost:8080 &
