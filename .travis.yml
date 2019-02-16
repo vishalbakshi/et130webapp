@@ -17,7 +17,8 @@ before_script:
   - sleep 15
 
 script: 
-  - node example.js
+  - node views/puppeteerTest.js
+  - npm test
 
 before_install:
   - # start your web application and listen on `localhost`
