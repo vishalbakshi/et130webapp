@@ -1,3 +1,5 @@
+https://travis-ci.org/vishalbakshi/et130webapp.svg?branch=master
+
 # Six Week Version
 1. What is impossible to do manually?
    - Access the web app--time to deploy!
