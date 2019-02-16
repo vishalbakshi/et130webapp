@@ -1,4 +1,4 @@
-https://travis-ci.org/vishalbakshi/et130webapp.svg?branch=master
+<img src="https://travis-ci.org/vishalbakshi/et130webapp.svg?branch=master"/>
 
 # Six Week Version
 1. What is impossible to do manually?
