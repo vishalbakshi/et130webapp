@@ -13,7 +13,7 @@ addons:
 
 before_script:
   - npm install connect
-  - node src/server.js ../../ 8080 &
+  - node src/server.js ../../ 8080 & node src/server.js ../../ 8081 &
   - sleep 15
 
 script: 

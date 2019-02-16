@@ -7,7 +7,7 @@ const selenium = require("selenium-webdriver");
 const server = require("../server.js")
 chai.use(chaiHttp);
 
-const port = process.env.PORT || 8080;
+const port = 8081;
 
 test("GET response contains correct page headings", function(done) {
   chai
