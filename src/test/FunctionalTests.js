@@ -4,9 +4,11 @@ const assert = chai.assert;
 const Mocha = require("mocha");
 const mocha = new Mocha({ ui: "tdd" });
 const selenium = require("selenium-webdriver");
+
+
 chai.use(chaiHttp);
 
-const port = 8081;
+const port = process.env.PORT || 8080;
 
 test("GET response contains correct page headings", function(done) {
   chai
