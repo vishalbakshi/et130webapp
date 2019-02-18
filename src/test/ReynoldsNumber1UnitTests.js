@@ -57,7 +57,7 @@ test("`ReynoldsNumber1` returns correct unit of metric `reynoldsNumber`", functi
     kinematicViscosity: [1.6e-6 * Math.random() + 0.1e-6, "m^2/s"]
   };
 
-  t.equal(ReynoldsNumber1(knownVariables)["reynoldsNumber"][1], "");
+  t.equal(ReynoldsNumber1(knownVariables)["reynoldsNumber"][1], "unitless");
   t.end();
 });
 
@@ -83,7 +83,7 @@ test("`ReynoldsNumber1` returns correct unit of imperial `tau`", function(t) {
     kinematicViscosity: [1.7e-5 * Math.random() + 0.1e-5, "ft^2/s"]
   };
 
-  t.equal(ReynoldsNumber1(knownVariables)["reynoldsNumber"][1], "");
+  t.equal(ReynoldsNumber1(knownVariables)["reynoldsNumber"][1], "unitless");
   t.end();
 });
 

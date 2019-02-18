@@ -5,9 +5,13 @@ html
         rel="stylesheet"
         href="styles.css"
       )
+    script(
+      src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+    )
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
-    
-  body 
+    script(src="prettyPracticeProblem.js")
+  body
+  .container
     h1 ET 130: Practice Problems
     form(
       action="/"
@@ -28,67 +32,83 @@ html
         type="submit"
         value="Go"
       )
-    h2='Topic: ' + topic
-
-    h3 Problem Statement
-    p=problemStatement
-
-    h3 Known Variables
-    ul
-      each val, index in knownVariables
-        li=index + ' = ' + val[0] + ' ' + val[1]
-
-    h3 Unknown Variable
-    ul
-      li=unknownVariable
-
-    h3 Relevant Formulas
-    ul  
-      li=relevantFormulas
-
-    h3 Answer
-    .answer
-      each val, index in answer
-        span=index + ' = '
-        span(id="numericAnswer")=val[0] + ' '
-        span(id="unitAnswer")=val[1]
-    br
-    button(
-      id="showAnswer"
-      value="showAnswer"
-    ) Show Answer
+    section
+      h2='Topic'
+      p.topic #{topic}
+    section
+      h3 Problem Statement
+      p.problemStatement #{problemStatement}
+    section
+      h3 Known Variables
+      ul
+        each val, index in knownVariables
+          li.knownVariables
+            span.variable=index
+            span  = 
+            span.number=val[0]
+            span  
+            span.units=val[1]
+    section
+      h3 Unknown Variable
+      span(
+        class="variable"
+        id="unknownVariable"
+       ) #{unknownVariable}
+    section
+      h3 Relevant Formulas
+      span.formula #{relevantFormulas}
+    section
+      h3 Answer
+      .answer
+        each val, index in answer
+          span.variable=index
+          span  = 
+          span(
+            class="number"
+            id="numericAnswer")=val[0]
+          span  
+          span(
+            class="unit"
+            id="unitAnswer")=val[1]
+      button(
+        id="showAnswer"
+        value="showAnswer"
+      ) Show Answer
     script(src="showAnswer.js")
-    br
-    br
-    form(
-      id="userAnswerForm"
-      action=""
-    )
-      label(for="userAnswer") Submit your answer here:
-      input(
-        type="text"
-        name="userAnswer"
+    section
+      form(
+        id="userAnswerForm"
+        action=""
       )
-      select(
-        name="unitChoices"
-      )
-        option(name="N") N
-        option(name="Pa") Pa
-        option(name="ncm") N/m^3
-        option(name="m") m
-        option(name="kg") kg
-        option(name="lbs") lbs
-        option(name="psf") lb/ft^2
-        option(name="pcf") lb/ft^3
-        option(name="ft") ft
-        option(name="slugs") slugs
-        option(name="unitless") unitless
-      input(
-        name="userAnswerSubmit"
-        type="submit"
-        value="Submit my answer"
-      )
-    span(id="checkAnswerResponse") 
-    br
-    a(href="/") New Problem
+        label(
+        id="userAnswerLabel"
+        for="userAnswer"
+        ) Submit your answer here:
+        input(
+          type="text"
+          name="userAnswer"
+        )
+        select(
+          name="unitChoices"
+        )
+          option(name="N") N
+          option(name="Pa") Pa
+          option(name="ncm") N/m^3
+          option(name="m") m
+          option(name="kg") kg
+          option(name="lbs") lbs
+          option(name="psf") lb/ft^2
+          option(name="pcf") lb/ft^3
+          option(name="ft") ft
+          option(name="slugs") slugs
+          option(name="unitless") unitless
+        input(
+          name="userAnswerSubmit"
+          type="submit"
+          value="Submit my answer"
+        )
+    section
+      span(id="checkAnswerResponse") 
+    section
+      a(href="/") New Problem
     script(src='checkAnswer.js')

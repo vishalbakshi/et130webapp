@@ -5,7 +5,6 @@ const Mocha = require("mocha");
 const mocha = new Mocha({ ui: "tdd" });
 const selenium = require("selenium-webdriver");
 
-
 chai.use(chaiHttp);
 
 const port = process.env.PORT || 8080;

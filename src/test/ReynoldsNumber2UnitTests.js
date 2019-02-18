@@ -62,7 +62,7 @@ test("`ReynoldsNumber2` returns correct unit of metric `reynoldsNumber`", functi
     density: [Math.floor(Math.random() * 1000 + 1), "kg/m^3"]
   };
 
-  t.equal(ReynoldsNumber2(knownVariables)["reynoldsNumber"][1], "");
+  t.equal(ReynoldsNumber2(knownVariables)["reynoldsNumber"][1], "unitless");
   t.end();
 });
 
@@ -92,7 +92,7 @@ test("`ReynoldsNumber2` returns correct unit of imperial `reynoldsNumber`", func
     density: [Math.floor(Math.random() * 1.94), "slugs/ft^3"]
   };
 
-  t.equal(ReynoldsNumber2(knownVariables)["reynoldsNumber"][1], "");
+  t.equal(ReynoldsNumber2(knownVariables)["reynoldsNumber"][1], "unitless");
   t.end();
 });
 

@@ -37,7 +37,7 @@ exports.RelativeRoughness = function RelativeRoughness(knownVariables) {
   let diameter = knownVariables.diameter;
 
   // Calculate unknown variable(s)
-  let relativeRoughness = [roughness[0] / diameter[0], ""];
+  let relativeRoughness = [roughness[0] / diameter[0], "unitless"];
 
   // get correct units of uknown variable based on input unit system
 

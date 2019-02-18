@@ -56,7 +56,7 @@ test("`RelativeRoughness` returns correct unit of metric `relativeRoughness`", f
     diameter: [Math.random(), "m"]
   };
 
-  t.equal(RelativeRoughness(knownVariables)["relativeRoughness"][1], "");
+  t.equal(RelativeRoughness(knownVariables)["relativeRoughness"][1], "unitless");
   t.end();
 });
 
@@ -82,7 +82,7 @@ test("`RelativeRoughness` returns correct unit of imperial `relativeRoughness`",
     diameter: [Math.random() * 3, "ft"]
   };
 
-  t.equal(RelativeRoughness(knownVariables)["relativeRoughness"][1], "");
+  t.equal(RelativeRoughness(knownVariables)["relativeRoughness"][1], "unitless");
   t.end();
 });
 

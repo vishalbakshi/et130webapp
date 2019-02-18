@@ -1,7 +1,53 @@
+.container {
+  display: grid;
+  justify-items: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-family: sans-serif;
+}
+
+section {
+  display: grid;
+  justify-items: center;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
 .answer {
   display: none;
 }
 
 .answer.selected {
   display: block;
+}
+
+h2,
+h3 {
+  color: rgb(39, 38, 38);
+  margin: 10 0 15 0;
+}
+
+#showAnswer {
+  margin-top: 10px;
+}
+#checkAnswerResponse {
+  background-color: red;
+}
+
+ul {
+  font-size: 1.15em;
+  list-style-type: none;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+
+span.formula, #unknownVariable{
+  font-size: 1.25em;
 }
