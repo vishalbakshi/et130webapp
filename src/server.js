@@ -64,7 +64,7 @@ app.route("/").get(function(req, res) {
   }
 
   // Send the problem object to index.pug
-  res.render("index", practiceProblem);
+  res.render("index", {practiceProblem: practiceProblem});
 });
 
 app.route("/test").get(function(req, res) {
@@ -84,6 +84,8 @@ app.route("/test").get(function(req, res) {
     practiceProblem = getProblem(unitSystem);
     practiceProblem.answer = topicFunction(practiceProblem.knownVariables);
   }
+
+
 
   // Send the problem object to index.pug
   res.render("test", practiceProblem);
