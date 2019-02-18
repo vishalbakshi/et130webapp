@@ -64,7 +64,7 @@ app.route("/").get(function(req, res) {
   }
 
   // Send the problem object to index.pug
-  res.render("index", {practiceProblem: practiceProblem});
+  res.render("index", practiceProblem);
 });
 
 app.route("/test").get(function(req, res) {

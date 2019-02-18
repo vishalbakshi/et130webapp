@@ -10,10 +10,10 @@ const puppeteer = require('puppeteer');
     }
   })
   await page.goto('http://localhost:8080/test');
+  await page.screenshot({path: 'example.png'});
   const failedSpan = await page.$('span[class=failed]');
   const failedCount = await page.evaluate(function(failedSpan){
     if (failedSpan.textContent != 0){
-      console.log(failedSpan.textContent);
       process.exit(1);
     } else {
       console.log('All QUnit tests have passed');
