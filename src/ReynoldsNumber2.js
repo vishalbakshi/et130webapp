@@ -47,7 +47,7 @@ exports.ReynoldsNumber2 = function ReynoldsNumber2(knownVariables) {
   // Calculate unknown variable(s)
   let reynoldsNumber = [
     (velocity * density * diameter) / dynamicViscosity,
-    "" // Reynolds Number is unitless
+    "unitless" // Reynolds Number is unitless
   ];
 
   // get correct units of uknown variable based on input unit system
